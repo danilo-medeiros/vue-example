@@ -2,10 +2,31 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 <body>
-	<div id="app">
-		{{message}}
+	<div id="app" class='row'>
+		<div class='col s12'>
+			{{message}}
+			<p v-html="message"></p>
+			<h2 v-once>This will never change: {{message}}</h2>
+			<button class="waves-effect btn waves-light" @click="message = '<b>Olá</b>'">Click me!</button>	
+			<pre>{{reverseMessage}}</pre>
+			<pre>{{date()}}</pre>
+
+		</div>
+		<form class='col s12'>
+			<div class='row'>
+				<div class='col s6'>
+					<input type="text" class='input-field' v-model="car.model" placeholder="Car Model">		
+				</div>	
+				<div class='col s6'>
+					<input type="text" class='input-field' v-model="car.year" placeholder="Production year">	
+				</div>
+			</div>
+			<button class='btn' v-bind:disabled="!!!car.model || !!!car.year" type='submit'>Submit</button>
+		</form>
+
 	</div>
 
 	<div id='app-2'>
@@ -27,26 +48,35 @@
 	</div>
 
 	<div id='app-5'>
-		<a v-bind:href = "link">{{link}}</a>
+		<a :href = "link">{{link}}</a>
 	</div>
 
 	<div id='app-6'>
 		{{message}}
-		<button v-on:click="reverseMessage">Reverse message!</button>
+		<button @click="reverseMessage">Reverse message!</button>
 	</div>
 
 	<div id='app-7'>
 		<input type="text" v-model="person.firstName">
 		<input type="text" v-model="person.lastName">
 		<ol>
-			<todo-item></todo-item>	
+			<todo-item :todo></todo-item>	
 		</ol>
-		
+	</div>
+
+	<div id="app-8">
+		<ol>
+			<todo-item 
+				v-for="item in groceryList" 
+				:todo = "item" 
+				:key = "item.id"></todo-item>
+		</ol>
 	</div>
 
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script type="text/javascript" src="app.js"></script>
+
 
 </html>

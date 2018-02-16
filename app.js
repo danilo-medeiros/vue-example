@@ -1,7 +1,19 @@
 var app = new Vue({
 	el: '#app',
 	data: {
-		message: 'Hello Vue!'
+		message: 'Hello Vue!',
+		car: {
+			model: "",
+			year: ""
+		}
+	},
+	computed: {
+		reverseMessage: function() {
+			return this.message.split("").reverse().join("");
+		}
+	},
+	methods: {
+		date: function() { return Date.now()}
 	}
 });
 
@@ -50,7 +62,8 @@ var app6 = new Vue({
 })
 
 Vue.component('todo-item', {
-	template: '<li>This is a todo</li>'
+	props: ['todo'],
+	template: '<li>{{ todo.text }}</li>'
 })
 
 var app7 = new Vue({
@@ -61,5 +74,15 @@ var app7 = new Vue({
 			lastName: "Medeiros"
 		}
 	}
-})
+});
 
+var app8 = new Vue({
+	el: "#app-8",
+	data: {
+		groceryList: [
+			{id: 0, text: "Vegetables"},
+			{id: 1, text: "Cheese"},
+			{id: 2, text: "Meat"}
+		]
+	}
+})
