@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+	</div>
+
+	<div id='app-2'>
+		<span v-bind:title = "message">
+			Hover me!
+		</span>
+	</div>
+
+	<div id='app-3'>
+		<span v-if='seen'>You are seeing me!</span>
+	</div>
+
+	<div id='app-4'>
+		<ul>
+			<li v-for="todo in todos">
+				{{todo.text}}
+			</li>
+		</ul>
+	</div>
+
+	<div id='app-5'>
+		<a v-bind:href = "link">{{link}}</a>
+	</div>
+
+	<div id='app-6'>
+		{{message}}
+		<button v-on:click="reverseMessage">Reverse message!</button>
+	</div>
+
+	<div id='app-7'>
+		<input type="text" v-model="person.firstName">
+		<input type="text" v-model="person.lastName">
+		<ol>
+			<todo-item></todo-item>	
+		</ol>
+		
+	</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript" src="app.js"></script>
+
+</html>
