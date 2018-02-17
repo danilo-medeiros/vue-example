@@ -1,0 +1,25 @@
+nav.gray {
+	background: #CCC;
+}
+nav.gray * {
+	color: #000 !important;
+}
+.breadcrumb:before {
+	color: rgba(101, 101, 101, 0.7);
+}
+.navy-blue {
+	background: #224b96;
+}
+input[type='text'] {
+	text-transform: uppercase;
+}
+#app {
+	background: #224b96;
+}
+.brand-logo img{
+	margin: 10px 0;
+}
+.white span {
+	color: #000;
+	font-weight: bold;
+}
