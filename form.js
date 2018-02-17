@@ -13,13 +13,11 @@ var app = new Vue({
 	el: "#app",
 	data: {
 		funcionario: {
-
+			
 		},
 		page: 1
 	},
 	computed: {
-		isFirstPageComplete() {
-			return !!!this.funcionario.nome || !!!this.funcionario.cpf;
-		}
+		
 	}
 })
