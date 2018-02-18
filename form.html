@@ -14,234 +14,274 @@
 	<div id='app'>
 		<main-header></main-header>
 		<div class="section no-pad-bot" id="index-banner">
+
 			<div class='container'>
 				<div class="card blue">
-					<div class="card-content white-text">
-						<p>Preencha o formulário para fazer uma solicitação de criação de usuário.</p>
+					<div v-show = "actualPage === 1" class="card-content white-text">
+						<p>Preencha o formulário para fazer uma solicitação de cadastro de funcionário no SGI - Sistema de Gestão da Informação.</p>
 					</div>
 				</div>
 				<div class='row'>
-					<form class='col s12' v-on:submit.prevent = "page++">
-						<div class="card-panel" :class="{ hide: page !== 1 }">
-							<h5 class="header center">Dados pessoais</h5>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="first_name" type="text" v-model="funcionario.nome" class="validate">
-									<label>Nome completo</label>
+					<form class='col s12' @submit.prevent = "actualPage++">
+						<transition :name="transitionName">
+							<div class="card-panel" v-show = "actualPage === 1">
+								<h5 class="header center">Dados pessoais</h5>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="first_name" type="text" v-model="funcionario.nome" class="validate">
+										<label>Nome completo</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select v-model="funcionario.sexo">
+											<option value="" disabled selected>Sexo</option>
+											<option>MASCULINO</option>
+											<option>FEMININO</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" class="datepicker">
+										<label>Data de nascimento</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input v-model = "funcionario.cpf" type="text" class="validate">
+										<label>CPF</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select>
+											<option value="" disabled selected>Estado civil</option>
+											<option>CASADO</option>
+											<option>DIVORCIADO</option>
+											<option>SOLTEIRO</option>
+											<option>VIÚVO</option>
+										</select>
+									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<select v-model="funcionario.sexo">
-										<option value="" disabled selected>Sexo</option>
-										<option value="Masculino">Masculino</option>
-										<option value="Feminino">Feminino</option>
-									</select>
+						</transition>
+						<transition :name="transitionName">
+							<div class="card-panel" v-show = "actualPage === 2">
+								<h5 class="header center">Endereço</h5>
+								<div class="row">
+									<div class="input-field col s12 m6">
+										<input id="first_name" type="text" class="validate">
+										<label for="first_name">CEP</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" id='logradouro' class="validate">
+										<label for="logradouro">Logradouro</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="numero" type="number" class="validate">
+										<label for="numero">Número</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="bairro" type="text" class="validate">
+										<label for="bairro">Bairro</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="cidade" type="text" class="validate">
+										<label for="cidade">Cidade</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="complemento" type="text" class="validate">
+										<label for="complemento">Complemento</label>
+									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" class="datepicker">
-									<label for="password">Data de nascimento</label>
+						</transition>
+						<transition :name="transitionName">
+							<div class='card-panel' v-show = "actualPage === 3">
+								<h5 class="header center">Contato</h5>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="celular" type="text" class="validate">
+										<label for="celular">Número do celular</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="email" id='email' class="validate">
+										<label for="email">E-mail pessoal</label>
+									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input v-model = "funcionario.cpf" type="text" class="validate">
-									<label for="email">CPF</label>
+						</transition>
+						<transition :name = "transitionName">
+							<div class='card-panel' v-show = "actualPage === 4">
+								<h5 class="header center">Formação</h5>
+								<div class="row">
+									<div class="input-field col s12">
+										<select>
+											<option value="">Grau de instrução</option>
+											<option value="ANALFABETO">ANALFABETO</option> 
+											<option value="SEMIANALFABETO">SEMI-ANALFABETO</option>
+											<option value="FUNDAMENTAL INCOMPLETO">FUNDAMENTAL INCOMPLETO</option> 
+											<option value="FUNDAMENTAL">FUNDAMENTAL</option>
+											<option value="MEDIO INCOMPLETO">MÉDIO INCOMPLETO</option> 
+											<option value="MEDIO">MÉDIO</option> 
+											<option value="SUPERIOR INCOMPLETO">SUPERIOR INCOMPLETO</option>
+											<option value="SUPERIOR">GRADUAÇÃO</option>
+											<option value="ESPECIALIZACAO">ESPECIALIZAÇÃO</option>
+											<option value="MESTRADO">MESTRADO</option>
+											<option value="DOUTORADO">DOUTORADO</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" id='formacao' class="validate">
+										<label for="formacao">Formação</label>
+									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<select>
-										<option value="" disabled selected>Estado civil</option>
-										<option value="1">CASADO</option>
-										<option value="2">DIVORCIADO</option>
-										<option value="3">SOLTEIRO</option>
-										<option value="4">VIÚVO</option>
-									</select>
+						</transition>
+						<transition :name = "transitionName">
+							<div class='card-panel' v-show = "actualPage === 5">
+								<h5 class="header center">Identidade</h5>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" id='numeroIdentidade' class="validate">
+										<label for="numeroIdentidade">Número</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" id='orgaoEmissor' class="validate">
+										<label for="orgaoEmissor">Órgão emissor</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select>
+											<option value="">Unidade federativa</option>
+											<option value="AC">AC</option>
+											<option value="AL">AL</option>
+											<option value="AM">AM</option>
+											<option value="AP">AP</option>
+											<option value="BA">BA</option>
+											<option value="CE">CE</option>
+											<option value="DF">DF</option>
+											<option value="ES">ES</option>
+											<option value="GO">GO</option>
+											<option value="MA">MA</option>
+											<option value="MG">MG</option>
+											<option value="MS">MS</option>
+											<option value="MT">MT</option>
+											<option value="PA">PA</option>
+											<option value="PB">PB</option>
+											<option value="PE">PE</option>
+											<option value="PI">PI</option>
+											<option value="PR">PR</option>
+											<option value="RJ">RJ</option>
+											<option value="RN">RN</option>
+											<option value="RO">RO</option>
+											<option value="RR">RR</option>
+											<option value="RS">RS</option>
+											<option value="SC">SC</option>
+											<option value="SE">SE</option>
+											<option value="SP">SP</option>
+											<option value="TO">TO</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="date" id='dataEmissaoRg' class="datepicker">
+										<label for="dataEmissaoRg">Data de emissão</label>
+									</div>
 								</div>
 							</div>
+						</transition>
+						<transition :name = "transitionName">
+							<div class='card-panel' v-show = "actualPage === 6">
+								<h5 class="header center">Dados funcionais</h5>
+								<div class="row">
+									<div class="input-field col s12">
+										<select><option value="">Lotação</option></select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" id='matricula' class="validate">
+										<label for="matricula">Matrícula</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select>
+											<option value="">Natureza do vínculo funcional</option>
+											<option value="EFETIVO">EFETIVO</option>
+											<option value="CONTRATO">CONTRATO</option>
+											<option value="CONTRATO TEMPORARIO">CONTRATO TEMPORARIO</option>
+											<option value="COMISSIONADO">COMISSIONADO</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select>
+											<option value="">Cargo</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input type="text" id='cargaHoraria' class="validate">
+										<label for="cargaHoraria">Carga horária</label>
+									</div>
+								</div>
+							</div>
+						</transition>
+						<transition :name = "transitionName">
+							<div class='card-panel' v-show = "actualPage === 7">
+								<h5 class="header center">Finalizar cadastro</h5>
+								<div v-for = "(value, key) in funcionarioDisplay">
+									<div class='row '>
+										<div class='col s4'>
+											<b>{{ key }}</b>
+										</div>
+										<div calss='col s8'>
+											{{ value }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</transition>
+						<div class='right-button fixed' v-show="actualPage < 7">
+							<button type='submit' class='btn-large tooltipped btn-floating blue' data-position="top" data-delay="50" data-tooltip="Próximo">
+								<i class="material-icons">arrow_forward</i>
+							</button>
 						</div>
-						<div class="card-panel" :class="{ hide: page !== 2 }">
-							<h5 class="header center">Endereço</h5>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="first_name" type="text" class="validate">
-									<label for="first_name">CEP</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id='logradouro' class="validate">
-									<label for="logradouro">Logradouro</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="numero" type="number" class="validate">
-									<label for="numero">Número</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="bairro" type="text" class="validate">
-									<label for="bairro">Bairro</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="cidade" type="text" class="validate">
-									<label for="cidade">Cidade</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="complemento" type="text" class="validate">
-									<label for="complemento">Complemento</label>
-								</div>
-							</div>
+						
+						<div class='left-button fixed' v-show = "actualPage > 1">
+							<button @click="actualPage--" type='button' class='btn-large tooltipped btn-floating blue' data-position="top" data-delay="50" data-tooltip="Anterior">
+								<i class="material-icons">arrow_back</i>
+							</button>
 						</div>
-						<div class='card-panel' :class="{ hide: page !== 3 }">
-							<h5 class="header center">Contato</h5>
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="celular" type="text" class="validate">
-									<label for="celular">Número do celular</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="email" id='email' class="validate">
-									<label for="email">E-mail pessoal</label>
-								</div>
-							</div>
+
+						<div class='right-button fixed' v-show = "actualPage === 7">
+							<button type='submit' class='btn-large tooltipped btn-floating green' data-position="top" data-delay="50" data-tooltip="Finalizar">
+								<i class="material-icons">check</i>
+							</button>
 						</div>
-						<div class='card-panel' :class="{ hide: page !== 4 }">
-							<h5 class="header center">Formação</h5>
-							<div class="row">
-								<div class="input-field col s12">
-									<select>
-										<option value="">Grau de instrução</option>
-										<option value="ANALFABETO">ANALFABETO</option> 
-										<option value="SEMIANALFABETO">SEMI-ANALFABETO</option>
-										<option value="FUNDAMENTAL INCOMPLETO">FUNDAMENTAL INCOMPLETO</option> 
-										<option value="FUNDAMENTAL">FUNDAMENTAL</option>
-										<option value="MEDIO INCOMPLETO">MÉDIO INCOMPLETO</option> 
-										<option value="MEDIO">MÉDIO</option> 
-										<option value="SUPERIOR INCOMPLETO">SUPERIOR INCOMPLETO</option>
-										<option value="SUPERIOR">GRADUAÇÃO</option>
-										<option value="ESPECIALIZACAO">ESPECIALIZAÇÃO</option>
-										<option value="MESTRADO">MESTRADO</option>
-										<option value="DOUTORADO">DOUTORADO</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id='formacao' class="validate">
-									<label for="formacao">Formação</label>
-								</div>
-							</div>
-						</div>
-						<div class='card-panel' :class="{ hide: page !== 5 }">
-							<h5 class="header center">Identidade</h5>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id='numeroIdentidade' class="validate">
-									<label for="numeroIdentidade">Número</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id='orgaoEmissor' class="validate">
-									<label for="orgaoEmissor">Órgão emissor</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<select>
-										<option value="">Unidade federativa</option>
-										<option value="AC">AC</option>
-										<option value="AL">AL</option>
-										<option value="AM">AM</option>
-										<option value="AP">AP</option>
-										<option value="BA">BA</option>
-										<option value="CE">CE</option>
-										<option value="DF">DF</option>
-										<option value="ES">ES</option>
-										<option value="GO">GO</option>
-										<option value="MA">MA</option>
-										<option value="MG">MG</option>
-										<option value="MS">MS</option>
-										<option value="MT">MT</option>
-										<option value="PA">PA</option>
-										<option value="PB">PB</option>
-										<option value="PE">PE</option>
-										<option value="PI">PI</option>
-										<option value="PR">PR</option>
-										<option value="RJ">RJ</option>
-										<option value="RN">RN</option>
-										<option value="RO">RO</option>
-										<option value="RR">RR</option>
-										<option value="RS">RS</option>
-										<option value="SC">SC</option>
-										<option value="SE">SE</option>
-										<option value="SP">SP</option>
-										<option value="TO">TO</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="date" id='dataEmissaoRg' class="datepicker">
-									<label for="dataEmissaoRg">Data de emissão</label>
-								</div>
-							</div>
-						</div>
-						<div class='card-panel' :class="{ hide: page !== 6 }">
-							<h5 class="header center">Dados funcionais</h5>
-							<div class="row">
-								<div class="input-field col s12">
-									<select><option value="">Lotação</option></select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id='matricula' class="validate">
-									<label for="matricula">Matrícula</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<select>
-										<option value="">Natureza do vínculo funcional</option>
-										<option value="EFETIVO">EFETIVO</option>
-										<option value="CONTRATO">CONTRATO</option>
-										<option value="CONTRATO TEMPORARIO">CONTRATO TEMPORARIO</option>
-										<option value="COMISSIONADO">COMISSIONADO</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<select>
-										<option value="">Cargo</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id='cargaHoraria' class="validate">
-									<label for="cargaHoraria">Carga horária</label>
-								</div>
-							</div>
-						</div>
-						<div class='card-panel' :class="{ hide: page !== 7 }">
-							
-						</div>
-						<button type='button' @click="page--" :class = "{ hide: page === 1 }" class="btn-large left waves-effect waves-light"><i class="material-icons left">arrow_back</i> Anterior</button>
-						<button type='submit' class="btn-large right waves-effect waves-light">Próximo <i class="material-icons right">arrow_forward</i></button>
 					</form>	
 				</div>
 			</div>
@@ -293,6 +333,10 @@
 		min: [new Date().getFullYear() - 80, 1, 1],
 		max: new Date(),
 		format: 'dd/mm/yyyy'
+	});
+
+	$(document).ready(function(){
+	   $('.tooltipped').tooltip({delay: 50});
 	});
 
 </script>

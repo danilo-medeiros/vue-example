@@ -10,16 +10,50 @@ nav.gray * {
 .navy-blue {
 	background: #224b96;
 }
-input[type='text'] {
-	text-transform: uppercase;
-}
+
 #app {
 	background: #224b96;
 }
 .brand-logo img{
 	margin: 10px 0;
 }
-.white span {
-	color: #000;
-	font-weight: bold;
+
+html {
+	scroll-behavior: smooth;
+}
+
+#index-banner {
+	min-height: 40vh;
+}
+
+
+
+.fixed {
+	position: fixed;
+	z-index: 100;
+	top: 60vh;
+}
+
+.right-button {
+	right: 5%;
+}
+
+.left-button {
+	left: 5%;
+}
+
+.forward-enter-active, .back-enter-active {
+  transition: all .5s;
+}
+.forward-leave-active, .back-leave-active {
+  transition: none;
+}
+.forward-enter {
+	transform: translateX(10px);
+	opacity: 0;
+}
+
+.back-enter {
+	transform: translateX(-10px);
+  	opacity: 0;
 }
