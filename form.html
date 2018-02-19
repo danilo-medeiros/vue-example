@@ -22,7 +22,7 @@
 					</div>
 				</div>
 				<div class='row'>
-					<form class='col s12' @submit.prevent = "actualPage++">
+					<form class='col s12' @submit.prevent = "page < 7 ? actualPage++ : sendData(funcionario)">
 						<transition :name="transitionName">
 							<div class="card-panel" v-show = "actualPage === 1">
 								<h5 class="header center">Dados pessoais</h5>
@@ -286,31 +286,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="page-footer white">
-			<div class="container">
-				<div class="row">
-					<div class="col l6 s12">
-						<h5 class="black-text">Sistema de Gestão da Informação</h5>
-						<p class="black-text ">O SGI é um sistema desenvolvido pela prefeitura municipal de Parnamirim para controle interno dos funcionários. Realizando seu cadastro, você poderá ter acesso a outros sistemas da prefeitura, como o Sisatendimento, Ponto eletrônico, Protocolo, Almoxarifado, etc.</p>
-					</div>
-					<div class="col l4 offset-l2 s12">
-						<h5 class="">Links</h5>
-						<ul>
-							<li><a class="black-text text-lighten-3" href="#!">Link 1</a></li>
-							<li><a class="black-text text-lighten-3" href="#!">Link 2</a></li>
-							<li><a class="black-text text-lighten-3" href="#!">Link 3</a></li>
-							<li><a class="black-text text-lighten-3" href="#!">Link 4</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="footer-copyright">
-				<div class="container black-text">
-					© 2018 Grupo de Ciência e Tecnologia da Informação - GCTI
-					<a class="black-text text-lighten-4 right" target="_blank" href="http://parnamirim.rn.gov.br">Portal da Prefeitura</a>
-				</div>
-			</div>
-		</footer>
+		<main-footer></main-footer>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script type="text/javascript" src='form.js'></script>

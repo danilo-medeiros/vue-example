@@ -10,6 +10,26 @@ Vue.component("main-header", {
 	</nav>`
 });
 
+Vue.component("main-footer", {
+	template: 
+	`<footer class="page-footer white">
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h5 class="black-text">Sistema de Gestão da Informação</h5>
+						<p class="black-text ">O SGI é um sistema desenvolvido pela prefeitura municipal de Parnamirim para controle interno dos funcionários. Realizando seu cadastro, você poderá ter acesso a outros sistemas da prefeitura, como o Sisatendimento, Ponto eletrônico, Protocolo, Almoxarifado, etc.</p>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container black-text">
+					© 2018 Grupo de Ciência e Tecnologia da Informação - GCTI
+					<a class="black-text text-lighten-4 right" target="_blank" href="http://parnamirim.rn.gov.br">Portal da Prefeitura</a>
+				</div>
+			</div>
+		</footer>`
+});
+
 var app = new Vue({
 	el: "#app",
 	data: {
@@ -45,6 +65,10 @@ var app = new Vue({
 				"Estado civil": this.funcionario.estadoCivil
 			}
 		}
-
+	},
+	methods: {
+		sendData: function(funcionario) {
+			console.log(funcionario);
+		}
 	}
 })
